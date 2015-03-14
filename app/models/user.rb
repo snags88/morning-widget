@@ -4,5 +4,10 @@ class User < ActiveRecord::Base
   has_many :user_subways
   has_many :subways, through: :user_subways
 
-  #=> TODO validate zipcode as 5 digit int, presence of email
+  validates :email, :name, :zipcode, :presence => true
+  validates :zipcode, length: { is: 5 }, numericality: { :only_integer => true }
+  validates :email, :uniqueness => true
+
+  has_secure_password
+
 end
