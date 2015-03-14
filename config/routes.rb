@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
+  root 'dashboard#index'
 
-  get '/mta/settings', to: 'mta#settings', as: 'mta_settings'
+  get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
+  get 'dashboard/setting', to: 'dashboard#setting', as: 'settings'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

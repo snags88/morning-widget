@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309225023) do
+ActiveRecord::Schema.define(version: 20150314162041) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "headline"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20150309225023) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subways", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
     t.boolean  "completed"
@@ -47,11 +53,22 @@ ActiveRecord::Schema.define(version: 20150309225023) do
 
   add_index "tasks", ["list_id"], name: "index_tasks_on_list_id"
 
+  create_table "user_subways", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "subway_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_subways", ["subway_id"], name: "index_user_subways_on_subway_id"
+  add_index "user_subways", ["user_id"], name: "index_user_subways_on_user_id"
+
   create_table "users", force: :cascade do |t|
-    t.string   "username"
+    t.string   "name"
     t.integer  "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "email"
   end
 
 end
