@@ -1,7 +1,7 @@
 <p>Here are your subways</p>
 
 <p><%= mta.status_time %></p>
-
+<!-- TODO default to showing a message to configure subways if none selected -->
 <ol>
   <%- mta.status(user.subways.pluck(:name)).each do |name, status_hash| -%>
   <li><%= name %></li>

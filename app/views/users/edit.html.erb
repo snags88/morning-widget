@@ -14,9 +14,8 @@
 
   <%= render :partial => 'users/subway_form', :locals => {:form => f}%>
 
-
-
-
   <%= f.submit 'Save' %>
 
 <%- end -%>
+
+<%= link_to "Delete Account", { action: :destroy, id: @user.id }, method: :delete, data: { confirm: 'Are you sure?' } %>

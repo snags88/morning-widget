@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  root 'users#show'
+  root 'welcome#index'
+
+  get '/signup', to: 'users#new', as: 'signup'
 
   get '/users/:id', to: 'users#show', as: 'dashboard'
   get '/users/:id/edit', to: 'users#edit', as: 'user_settings'
   patch '/users/:id', to: 'users#update'
 
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to:'sessions#create'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
 

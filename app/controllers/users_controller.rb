@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, :authorization_action, only: [:show, :edit, :update, :destroy]
   before_action :set_mta, :set_weather, :set_news, only: [:show]
 
   def new
+    @user = User.new
   end
 
   def create
+    @user = User.new(user_params)
+    if @user.save
+      login(@user)
+      redirect_to dashboard_path(@user)
+    else
+      #=> TODO add flash message
+      render 'new'
+    end
   end
 
   def show
@@ -22,9 +31,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    redirect_to root_path
+  end
+
   private
     def user_params
-      params.require(:user).permit(:name, :zipcode, :subway_ids => [])
+      params.require(:user).permit(:name, :email, :zipcode, :password, :password_confirmation, :subway_ids => [])
+    end
+
+    def authorization_action
+      if !authorized?
+        flash[:notice] = "You must be logged in to perform that action."
+        redirect_to root_path
+      end
     end
 
     def set_user
