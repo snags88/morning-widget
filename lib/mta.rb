@@ -12,8 +12,16 @@ class MTA
     scrape_status
   end
 
-  def status(line=LINES)
-    line == LINES ? status_hash : self.status_hash[line]
+  def status(line)
+    return_hash = Hash.new
+    if line.empty?
+      return_hash = status_hash
+    else
+      line.each do |line_key|
+       return_hash[line_key] = self.status_hash[line_key]
+      end
+    end
+    return_hash
   end
 
   def scrape_status
@@ -44,4 +52,6 @@ end
                 "456" => {"status" => "",
                            "text" => ""}
 }
+
+
 =end

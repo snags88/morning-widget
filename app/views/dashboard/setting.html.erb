@@ -1,9 +1,0 @@
-<h1>Dashboard Settings</h1>
-
-
-<%= form_for :user do |f| %>
-  <%= f.collection_check_boxes(:subway_ids, Subway.all, :id, :name) do |b| %>
-    <%= b.label(:class => "") { b.check_box + b.text}%>
-  <%- end -%>
-
-<%- end -%>

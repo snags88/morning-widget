@@ -1,0 +1,10 @@
+<h1>Dashboard</h1>
+
+<p>Hello <%= @user.name %>, your zipcode is <%= @user.zipcode %></p>
+
+<%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
+
+
+
+
+<%= link_to('Settings', user_settings_path) %>

@@ -1,0 +1,3 @@
+<%= form.collection_check_boxes(:subway_ids, Subway.all, :id, :name) do |b| %>
+  <%= b.label(:class => "") { b.check_box + b.text}%>
+<%- end -%>

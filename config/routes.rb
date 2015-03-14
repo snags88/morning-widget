@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  root 'dashboard#index'
+  root 'users#show'
 
-  get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
-  get 'dashboard/setting', to: 'dashboard#setting', as: 'settings'
+  get '/users/:id', to: 'users#show', as: 'dashboard'
+  get '/users/:id/edit', to: 'users#edit', as: 'user_settings'
+  patch '/users/:id', to: 'users#update'
+
+
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

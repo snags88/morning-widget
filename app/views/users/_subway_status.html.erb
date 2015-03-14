@@ -1,0 +1,13 @@
+<p>Here are your subways</p>
+
+<p><%= mta.status_time %></p>
+
+<ol>
+  <%- mta.status(user.subways.pluck(:name)).each do |name, status_hash| -%>
+  <li><%= name %></li>
+  <ul>
+    <li><%= status_hash["status"] %></li>
+    <li><%= status_hash["text"] %></li>
+  </ul>
+  <%- end -%>
+</ol>

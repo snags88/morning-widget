@@ -1,0 +1,20 @@
+<h1>Dashboard Settings</h1>
+
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode %>
+  </div>
+
+
+  <%= render :partial => 'users/subway_form', :locals => {:form => f}%>
+
+
+  <%= f.submit 'Save' %>
+
+<%- end -%>
