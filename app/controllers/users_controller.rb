@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :set_mta, only: [:show]
+  before_action :set_weather, only: [:show]
 
   def new
   end
@@ -34,4 +35,9 @@ class UsersController < ApplicationController
     def set_mta
       @mta = MTA.new
     end
+
+    def set_weather
+      @weather = Wunderground.new(@user.zipcode)
+    end
+
 end

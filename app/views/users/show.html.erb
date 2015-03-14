@@ -4,7 +4,7 @@
 
 <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
 
-
+<%= @weather.current_weather %>
 
 
 <%= link_to('Settings', user_settings_path) %>
