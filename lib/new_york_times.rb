@@ -2,7 +2,7 @@ require 'open-uri'
 
 class NewYorkTimes
 
-  URL = "http://api.nytimes.com/svc/topstories/v1/home.json?api-key=afa60c05354632ca201743143213c48b:6:71583923"
+  URL = "http://api.nytimes.com/svc/topstories/v1/home.json?api-key=#{ENV['NYTIMES_KEY']}"
 
   attr_accessor :news_json, :api_call
 
@@ -14,7 +14,7 @@ class NewYorkTimes
   def open_url
     self.news_json = JSON.load(open(self.api_call))["results"]
   end
-  
+
   def top_5_news_stories
     self.news_json[0..4].collect do |news_hash|
       get_news(news_hash)
@@ -34,9 +34,3 @@ class NewYorkTimes
     news_hash["url"]
   end
 end
-
-
-
-
-
-# API KEY: afa60c05354632ca201743143213c48b:6:71583923

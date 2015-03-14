@@ -4,8 +4,11 @@
 
 <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
 
-<%= @weather.current_weather %>
+<%= @weather.current_weather %><br>
 
-<<%= @news.top_5_news_stories %>
+<br>
+<ol>
+<%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
+</ol>
 
 <%= link_to('Settings', user_settings_path) %>

@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :set_mta, only: [:show]
-  before_action :set_weather, only: [:show]
+  before_action :set_mta, :set_weather, :set_news, only: [:show]
 
   def new
   end
