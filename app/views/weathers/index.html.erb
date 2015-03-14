@@ -1,0 +1,13 @@
+<h3>Click on a zip code to display the weather.</h3>
+<ul>
+<% @weathers.each do |weather| %>
+  <li><%= weather.zipcode %></li>
+<% end %>
+</ul>
+
+<h3>Can't find your zip? Search below!</h3>
+<%= form_tag weathers_path, :method => "get" do %>
+  <%= text_field_tag :search, params[:search] %> 
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+

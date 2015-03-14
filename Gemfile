@@ -4,6 +4,9 @@ ruby '2.2.0'
 # Framework
 gem 'rails', '4.2.0'
 
+# WeatherApp 
+gem 'wunderground'
+
 # Database
 gem 'sqlite3'
 
@@ -22,7 +25,6 @@ end
 # Server
 gem 'unicorn'
 
-gem 'wunderground'
 
 
 group :development, :test do
