@@ -71,4 +71,10 @@ ActiveRecord::Schema.define(version: 20150314162041) do
     t.string   "email"
   end
 
+  create_table "weathers", force: :cascade do |t|
+    t.string   "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end

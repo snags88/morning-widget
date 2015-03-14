@@ -40,4 +40,8 @@ class UsersController < ApplicationController
       @weather = Wunderground.new(@user.zipcode)
     end
 
+    def set_news
+      @news = NewYorkTimes.new
+    end
+
 end
