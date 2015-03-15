@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-identity'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -34,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'nokogiri'
 gem 'json'
+
+gem 'twitter'
 
 group :development, :test do
   gem 'dotenv-rails'

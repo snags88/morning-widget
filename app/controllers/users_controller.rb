@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, :authorization_action, only: [:show, :edit, :update, :destroy]
-  before_action :set_mta, :set_weather, :set_news, only: [:show]
+  before_action :set_mta, :set_weather, :set_news, :set_twitter, only: [:show]
 
   def new
     @user = User.new
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to root_path
+    redirect_to root_path, :notice => 'Removed Account'
   end
 
   private
@@ -62,6 +62,10 @@ class UsersController < ApplicationController
 
     def set_news
       @news = NewYorkTimes.new
+    end
+
+    def set_twitter
+      @twitter = Twitter_helper.new(session[:token], session[:secret])
     end
 
 end

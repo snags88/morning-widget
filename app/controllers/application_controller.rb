@@ -6,17 +6,25 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
+  helper_method :current_user
 
   def login(user)
     session[:user_id] = user.id
   end
 
-  def logged_in?
-    !!@current_user
+  def set_keys(auth)
+    session[:token] = auth["credentials"]["token"]
+    session[:secret] = auth["credentials"]["secret"]
   end
 
-  def authorized?
-    logged_in? && @current_user.id == params[:id]
+  def logged_in?
+    !!current_user
   end
+  helper_method :logged_in?
+
+  def authorized?
+    logged_in? && current_user.id == params[:id].to_i
+  end
+  helper_method :authorized?
 
 end

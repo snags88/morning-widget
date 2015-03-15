@@ -1,9 +1,22 @@
 <%= flash[:notice] %></br>
 
-<%= form_tag('/login') %>
-  <%= label_tag 'email' %></br>
-  <%= email_field_tag 'email' %></br>
-  <%= label_tag 'password' %></br>
-  <%= password_field_tag 'password' %></br>
-</br>
-  <%= submit_tag 'Login' %>
+
+<%= link_to('Sign in with Twitter', '/auth/twitter') %>
+
+<p>
+  <strong>Don't use these services?</strong>
+  <%= link_to 'Signup', signup_path %> or Log in:</br>
+
+    <%= form_tag '/auth/identity/callback' do %>
+    <div class='field'>
+      <%= label_tag :auth_key, 'Email' %><br>
+      <%= email_field_tag :auth_key %>
+    </div>
+    <div class='field'>
+      <%= label_tag 'password' %><br>
+      <%= password_field_tag 'password' %>
+    </div>
+    <div class='actions'><%= submit_tag 'Login' %></div>
+  <% end %>
+
+</p>

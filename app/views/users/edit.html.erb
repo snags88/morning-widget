@@ -1,5 +1,7 @@
 <h1>Dashboard Settings</h1>
 
+<%= flash[:notice] %>
+
 <%= form_for @user do |f| %>
   <div class="field">
     <%= f.label :name %>
@@ -17,5 +19,8 @@
   <%= f.submit 'Save' %>
 
 <%- end -%>
+
+<%#= link_to('Link your Twitter Account', '/auth/twitter') %>
+
 
 <%= link_to "Delete Account", { action: :destroy, id: @user.id }, method: :delete, data: { confirm: 'Are you sure?' } %>

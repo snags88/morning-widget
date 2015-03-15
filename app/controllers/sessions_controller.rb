@@ -4,19 +4,28 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(:email => params[:email])
-    if @user && @user.authenticate(params[:password])
-      login(@user)
-      redirect_to dashboard_path(@user)
-    else
-      flash.now[:notice] = "Invalid login. Please try again."
-      render 'new'
-    end
+    auth = request.env["omniauth.auth"]
+    @user = User.set_user(auth)
+    set_keys(auth)
+    login(@user)
+    redirect_to user_settings_path(@user), :notice => "Signed in!"
   end
 
   def destroy
-    reset_session
+    session[:user_id] = nil
+    flash[:notice] = "Signed out!"
     redirect_to root_path
   end
 
 end
+
+  # def create
+  #   @user = User.find_by(:email => params[:email])
+  #   if @user && @user.authenticate(params[:password])
+  #     login(@user)
+  #     redirect_to dashboard_path(@user)
+  #   else
+  #     flash.now[:notice] = "Invalid login. Please try again."
+  #     render 'new'
+  #   end
+  # end

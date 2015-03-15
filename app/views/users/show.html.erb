@@ -11,6 +11,11 @@
 <%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
 </ol>
 
+<ol>
+<%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
+</ol>
+
+
 <%= link_to('Settings', user_settings_path) %>
 
-<%= link_to('Logout', logout_path) %>
+<%= link_to('Sign Out', signout_path) %>
