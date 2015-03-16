@@ -28,7 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'omniauth-identity'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

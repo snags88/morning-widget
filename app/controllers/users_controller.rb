@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, :authorization_action, only: [:show, :edit, :update, :destroy]
-  before_action :set_mta, :set_weather, :set_news, :set_twitter, only: [:show]
+  before_action :set_apis, only: [:show]
 
   def new
     @user = User.new
@@ -52,20 +52,11 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def set_mta
+    def set_apis
       @mta = MTA.new
-    end
-
-    def set_weather
       @weather = Wunderground.new(@user.zipcode)
-    end
-
-    def set_news
       @news = NewYorkTimes.new
-    end
-
-    def set_twitter
-      @twitter = Twitter_helper.new(@user.token, @user.secret)
+      @twitter = Twitter_helper.new(@user.token, @user.secret) if oauth?
     end
 
 end

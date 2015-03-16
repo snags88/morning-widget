@@ -7,14 +7,14 @@
   <strong>Don't use these services?</strong>
   <%= link_to 'Signup', signup_path %> or Log in:</br>
 
-    <%= form_tag '/auth/identity/callback' do %>
+    <%= form_tag '/signin' do %>
     <div class='field'>
-      <%= label_tag :auth_key, 'Email' %><br>
-      <%= email_field_tag :auth_key %>
+      <%= label_tag :email %><br>
+      <%= email_field_tag :email %>
     </div>
     <div class='field'>
-      <%= label_tag 'password' %><br>
-      <%= password_field_tag 'password' %>
+      <%= label_tag :password %><br>
+      <%= password_field_tag :password %>
     </div>
     <div class='actions'><%= submit_tag 'Login' %></div>
   <% end %>

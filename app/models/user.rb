@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :user_subways
   has_many :subways, through: :user_subways
 
+  has_many :identities, dependent: :destroy
+
   validates :zipcode, length: { is: 5 }, numericality: { :only_integer => true }, :unless => Proc.new { |a| a.zipcode.blank? }
 
   def self.set_user(auth)

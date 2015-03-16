@@ -1,6 +1,6 @@
 class IdentitiesController < ApplicationController
   def new
-    @identity = env['omniauth.identity']
+    @identity = Identity.new
   end
 
   def create
@@ -8,6 +8,8 @@ class IdentitiesController < ApplicationController
     if @identity.save
       login(@identity.user)
       redirect_to user_settings_path(@identity.user), :notice => "Signed in!"
+    else
+      render 'new'
     end
   end
 

@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :logged_in?
 
+  def oauth?
+    !!current_user.token
+  end
+  helper_method :oauth?
+
   def authorized?
     logged_in? && current_user.id == params[:id].to_i
   end

@@ -11,10 +11,11 @@
 <%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
 </ol>
 
-<ol>
-<%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
-</ol>
-
+<%- if oauth? -%>
+  <ol>
+  <%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
+  </ol>
+<%- end -%>
 
 <%= link_to('Settings', user_settings_path) %>
 
