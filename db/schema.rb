@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315202923) do
+ActiveRecord::Schema.define(version: 20150316170947) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "headline"
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 20150315202923) do
     t.datetime "updated_at", null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
   end
 
 end

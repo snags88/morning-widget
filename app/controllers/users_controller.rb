@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     end
 
     def set_twitter
-      @twitter = Twitter_helper.new(session[:token], session[:secret])
+      @twitter = Twitter_helper.new(@user.token, @user.secret)
     end
 
 end

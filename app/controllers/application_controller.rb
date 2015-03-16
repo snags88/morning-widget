@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
-  def set_keys(auth)
-    session[:token] = auth["credentials"]["token"]
-    session[:secret] = auth["credentials"]["secret"]
-  end
-
   def logged_in?
     !!current_user
   end

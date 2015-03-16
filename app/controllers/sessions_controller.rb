@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     @user = User.set_user(auth)
-    set_keys(auth)
     login(@user)
     redirect_to user_settings_path(@user), :notice => "Signed in!"
   end
