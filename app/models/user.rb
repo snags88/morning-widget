@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   has_many :user_subways
   has_many :subways, through: :user_subways
 
   has_many :identities, dependent: :destroy
 
-  validates :zipcode, length: { is: 5 }, numericality: { :only_integer => true }, :unless => Proc.new { |a| a.zipcode.blank? }
+  validates :zipcode, :format => {:with => /\d{5}/, :message => "invalid zipcode format" }, numericality: { :only_integer => true }, :unless => Proc.new { |a| a.zipcode.blank? }
 
   def self.set_user(auth)
     User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)

@@ -57,6 +57,7 @@ class UsersController < ApplicationController
       @weather = Wunderground.new(@user.zipcode)
       @news = NewYorkTimes.new
       @twitter = Twitter_helper.new(@user.token, @user.secret) if oauth?
+      @tasks = @user.tasks
     end
 
 end

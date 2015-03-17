@@ -17,6 +17,20 @@
   </ol>
 <%- end -%>
 
+
+<ul>
+<%- @tasks.each do |task| -%>
+    <li><%= task.name %> | <%= link_to 'Delete', user_task_path(task.user, task), method: :delete %></li>
+<%- end -%>
+</ul>
+
+
+<%= form_for [@user, Task.new] do |f| %>
+    <%= f.label :name, 'Task' %>
+    <%= f.text_field :name %>
+  <%= f.submit %>
+<%- end -%>
+
 <%= link_to('Settings', user_settings_path) %>
 
 <%= link_to('Sign Out', signout_path) %>
