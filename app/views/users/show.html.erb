@@ -2,9 +2,18 @@
 
 <p>Hello <%= @user.name %>, your zipcode is <%= @user.zipcode %></p>
 
-<%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
+<%- if !@user.subways.empty? -%>
+  <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
+<%- else -%>
+  <p>No subways selected.</p>
+<%- end -%>
 
-<%= @weather.current_weather %><br>
+
+<%- if @weather.weather_json -%>
+  <%= @weather.current_weather %><br>
+<%- else -%>
+  <p>Weather Forecast not available for this zipcode.</p>
+<%- end -%>
 
 <br>
 <ol>
