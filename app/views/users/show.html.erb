@@ -2,10 +2,44 @@
 
 <p>Hello <%= @user.name %>, your zipcode is <%= @user.zipcode %></p>
 
-<%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
+<%- if !@user.subways.empty? -%>
+  <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
+<%- else -%>
+  <p>No subways selected.</p>
+<%- end -%>
 
-<%= @weather.current_weather %>
 
-<<%= @news.top_5_news_stories %>
+<%- if @weather.weather_json -%>
+  <%= @weather.current_weather %><br>
+<%- else -%>
+  <p>Weather Forecast not available for this zipcode.</p>
+<%- end -%>
+
+<br>
+<ol>
+<%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
+</ol>
+
+<%- if oauth? -%>
+  <ol>
+  <%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
+  </ol>
+<%- end -%>
+
+
+<ul>
+<%- @tasks.each do |task| -%>
+    <li><%= task.name %> | <%= link_to 'Delete', user_task_path(task.user, task), method: :delete %></li>
+<%- end -%>
+</ul>
+
+
+<%= form_for [@user, Task.new] do |f| %>
+    <%= f.label :name, 'Task' %>
+    <%= f.text_field :name %>
+  <%= f.submit %>
+<%- end -%>
 
 <%= link_to('Settings', user_settings_path) %>
+
+<%= link_to('Sign Out', signout_path) %>

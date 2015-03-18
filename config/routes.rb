@@ -1,12 +1,22 @@
 Rails.application.routes.draw do
-  root 'users#show'
+  root 'sessions#new'
+
+  get '/signup', to: 'identities#new', as: 'signup'
+  post '/identities', to:'identities#create'
 
   get '/users/:id', to: 'users#show', as: 'dashboard'
   get '/users/:id/edit', to: 'users#edit', as: 'user_settings'
   patch '/users/:id', to: 'users#update'
 
+  post '/signin', to:'sessions#create'
+  get '/signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :users
+  get '/auth/:provider/callback', to: 'sessions#create'
+  post '/auth/:provider/callback', to: 'sessions#create'
+
+  resources :users do
+    resources :tasks
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -14,9 +14,7 @@ class MTA
 
   def status(line)
     return_hash = Hash.new
-    if line.empty?
-      return_hash = status_hash
-    else
+    if !line.empty?
       line.each do |line_key|
        return_hash[line_key] = self.status_hash[line_key]
       end

@@ -11,25 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314162041) do
+ActiveRecord::Schema.define(version: 20150317001417) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "headline"
-    t.string   "url"
-    t.datetime "article_date"
-    t.string   "source"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "lists", force: :cascade do |t|
+  create_table "identities", force: :cascade do |t|
     t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "lists", ["user_id"], name: "index_lists_on_user_id"
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "quotes", force: :cascade do |t|
     t.string   "quote"
@@ -45,13 +38,12 @@ ActiveRecord::Schema.define(version: 20150314162041) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "completed"
-    t.integer  "list_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "tasks", ["list_id"], name: "index_tasks_on_list_id"
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
 
   create_table "user_subways", force: :cascade do |t|
     t.integer  "user_id"
@@ -65,16 +57,13 @@ ActiveRecord::Schema.define(version: 20150314162041) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.integer  "zipcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "email"
-  end
-
-  create_table "weathers", force: :cascade do |t|
     t.string   "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
   end
 
 end
