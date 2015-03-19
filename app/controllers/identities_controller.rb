@@ -9,7 +9,7 @@ class IdentitiesController < ApplicationController
       login(@identity.user)
       redirect_to user_settings_path(@identity.user), :success => "Signed in!"
     else
-      render 'new'
+      render 'sessions/new'
     end
   end
 

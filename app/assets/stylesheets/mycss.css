@@ -15,3 +15,7 @@ a.btn.btn-primary:hover{
 .centered{
   text-align: center;
 }
+
+.form-horizontal{
+  float: right;
+}
