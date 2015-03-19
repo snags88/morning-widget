@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @identity = Identity.new
   end
 
   def create
