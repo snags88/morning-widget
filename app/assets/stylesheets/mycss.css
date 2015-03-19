@@ -1,0 +1,17 @@
+
+a.btn.btn-primary:hover{
+  text-decoration: none;
+  background-color: #333333;
+}
+
+.jumbotron h1{
+  text-align: center;
+}
+
+.jumbotron {
+  margin: 20%;
+}
+
+.centered{
+  text-align: center;
+}
