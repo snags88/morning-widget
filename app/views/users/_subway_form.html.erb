@@ -1,3 +1,16 @@
+<% count = 0 %>
+
 <%= form.collection_check_boxes(:subway_ids, Subway.all, :id, :name) do |b| %>
-  <%= b.label(:class => "") { b.check_box + b.text}%>
+  <% count +=1 %>
+  <%- if (b.value - 1) % 3 == 0 -%>
+  <div class="col-md-1">
+  <%- end -%>
+    <div class="checkbox">
+      <%= b.label(:class => "") { b.check_box + b.text}%>
+    </div>
+  <%- if b.value % 3 == 0 -%>
+  </div>
+  <%- end -%>
 <%- end -%>
+
+<%= "</div>".html_safe if !(count % 3 == 0) %>

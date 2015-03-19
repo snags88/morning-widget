@@ -7,16 +7,17 @@ class SessionsController < ApplicationController
     @user = build_user(request.env["omniauth.auth"])
     if @user && @user.save
       login(@user)
-      redirect_to user_settings_path(@user), :notice => "Signed in!"
+      flash[:success] = "Signed in!"
+      redirect_to user_settings_path(@user)
     else
-      flash.now[:notice] = "Invalid login. Please try again."
+      flash.now[:danger] = "Invalid login. Please try again."
       render 'new'
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "Signed out!"
+    flash[:success] = "Signed out!"
     redirect_to root_path
   end
 

@@ -7,7 +7,7 @@ class IdentitiesController < ApplicationController
     @identity = Identity.build_user_identity(identity_params)
     if @identity.save
       login(@identity.user)
-      redirect_to user_settings_path(@identity.user), :notice => "Signed in!"
+      redirect_to user_settings_path(@identity.user), :success => "Signed in!"
     else
       render 'new'
     end

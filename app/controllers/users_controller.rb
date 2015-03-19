@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to root_path, :notice => 'Removed Account'
+    redirect_to root_path, :danger => 'Removed Account'
   end
 
   private
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
     def authorization_action
       if !authorized?
-        flash[:notice] = "You must be logged in to perform that action."
+        flash[:danger] = "You must be logged in to perform that action."
         redirect_to root_path
       end
     end
