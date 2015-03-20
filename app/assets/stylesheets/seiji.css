@@ -9,8 +9,17 @@
   float: right;
 }
 
+.bottom-align {
+  position: relative;
+  top: 14px;
+}
+
 .top-pad {
   margin-top: 57px;
+}
+
+.top-dashboard {
+  margin-top: 25px;
 }
 
 div > button.close.by-text {
@@ -34,6 +43,15 @@ div > button.close.by-text {
   height: 60px;
   margin: 0 auto;
 }
+
+
+/* SUBWAY STYLING*/
+
+.subway-container {
+  width: 30%;
+  /*float: left;*/
+}
+
 
 #heading456 {
   background-color: #00933C;

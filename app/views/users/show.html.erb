@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container top-dashboard">
 
   <div class="row">
     <div class="col-md-offset-1 col-md-10 text-center">
@@ -24,8 +24,6 @@
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
     </div>
-
-
   </div>
 
   <%- if @weather.weather_json -%>
