@@ -1,13 +1,39 @@
 <p>Here are your subways</p>
 
 <p><%= mta.status_time %></p>
-<!-- TODO default to showing a message to configure subways if none selected -->
-<ol>
-  <%- mta.status(user.subways.pluck(:name)).each do |name, status_hash| -%>
-  <li><%= name %></li>
-  <ul>
-    <li><%= status_hash["status"] %></li>
-    <li><%= status_hash["text"] %></li>
-  </ul>
+
+
+<%- if user.subways.empty? -%>
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          No subways selected
+        </a>
+      </h4>
+    </div>
+  </div>
+<%- else -%>
+  <%- mta.status(user.ordered_subways).each do |name, status_hash| -%>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading<%= name %>">
+        <h4 class="panel-title">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= name %>" aria-expanded="false" aria-controls="collapse<%= name %>">
+            <%= name %> | <%= status_hash["status"] %>
+          </a>
+        </h4>
+      </div>
+      <%- if !status_hash["text"].empty? -%>
+        <div id="collapse<%= name %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= name %>">
+          <div class="panel-body">
+            <ul>
+              <%- status_hash["text"].each do |status| -%>
+                <li><%= status %></li>
+              <%- end -%>
+            </ul>
+          </div>
+        </div>
+      <%- end -%>
+    </div>
   <%- end -%>
-</ol>
+<%- end -%>

@@ -1,45 +1,63 @@
-<h1>Dashboard</h1>
+<div class="container">
 
-<p>Hello <%= @user.name %>, your zipcode is <%= @user.zipcode %></p>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10 text-center">
+      <h1>Hello <%= @user.name %>, welcome to your dashboard</h1>
+    </div>
+    <div class="col-md-1">
+      <div class="image-container">
+        <a href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+        <%- if oauth? -%>
+          <img id="profile-image" src="<%= @twitter.my_image %>" alt="<%= @user.name %>" data-content="Hello World" data-placement="bottom">
+        <%- else -%>
+          <%= image_tag 'default_profile.jpg', :id => "profile-image" %>
+        <%- end -%>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li><%= link_to('Settings', user_settings_path) %></li>
+          <li><%= link_to('Sign Out', signout_path) %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="subway-container">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
+    </div>
 
-<%- if !@user.subways.empty? -%>
-  <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
-<%- else -%>
-  <p>No subways selected.</p>
-<%- end -%>
 
+  </div>
 
-<%- if @weather.weather_json -%>
-  <%= @weather.current_weather %><br>
-<%- else -%>
-  <p>Weather Forecast not available for this zipcode.</p>
-<%- end -%>
+  <%- if @weather.weather_json -%>
+    <%= @weather.current_weather %><br>
+  <%- else -%>
+    <p>Weather Forecast not available for this zipcode.</p>
+  <%- end -%>
 
-<br>
-<ol>
-<%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
-</ol>
-
-<%- if oauth? -%>
+  <br>
   <ol>
-  <%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
+  <%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
   </ol>
-<%- end -%>
+
+  <%- if oauth? -%>
+    <ol>
+    <%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
+    </ol>
+  <%- end -%>
 
 
-<ul>
-<%- @tasks.each do |task| -%>
-    <li><%= task.name %> | <%= link_to 'Delete', user_task_path(task.user, task), method: :delete %></li>
-<%- end -%>
-</ul>
+  <ul>
+  <%- @tasks.each do |task| -%>
+      <li><%= task.name %> | <%= link_to 'Delete', user_task_path(task.user, task), method: :delete %></li>
+  <%- end -%>
+  </ul>
 
 
-<%= form_for [@user, Task.new] do |f| %>
-    <%= f.label :name, 'Task' %>
-    <%= f.text_field :name %>
-  <%= f.submit %>
-<%- end -%>
+  <%= form_for [@user, Task.new] do |f| %>
+      <%= f.label :name, 'Task' %>
+      <%= f.text_field :name %>
+    <%= f.submit %>
+  <%- end -%>
 
-<%= link_to('Settings', user_settings_path) %>
 
-<%= link_to('Sign Out', signout_path) %>
+</div>

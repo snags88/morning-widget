@@ -18,9 +18,11 @@ class Twitter_helper
       "text" => tweet.text,
       "image_url" => tweet.user.profile_image_url.site +  tweet.user.profile_image_url.path,
       "created_at" => tweet.created_at} #=> call time_in_words in ActionView
-
     end
+  end
 
+  def my_image
+    @client.user.profile_image_url.site + @client.user.profile_image_url.path
   end
 
 end

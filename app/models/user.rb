@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
 
   validates :zipcode, :format => {:with => /\d{5}/, :message => "invalid zipcode format" }, numericality: { :only_integer => true }, :unless => Proc.new { |a| a.zipcode.blank? }
 
+  def ordered_subways
+    filter = self.subways.pluck(:id)
+    Subway.where(:id => filter).order(:id).pluck(:name)
+  end
+
   def self.set_user(auth)
     User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
   end

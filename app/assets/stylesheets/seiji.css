@@ -17,3 +17,61 @@ div > button.close.by-text {
   float: none;
   top: 1px;
 }
+
+.image-container {
+  height: 70px;
+}
+
+#profile-image {
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+
+#heading456 {
+  background-color: #00933C;
+  color: white;
+}
+#heading123 {
+  background-color: #FF2820;
+  color: white;
+}
+#heading7 {
+  background-color: #B933AD;
+  color: white;
+}
+#headingACE {
+  background-color: #2850B9;
+  color: white;
+}
+#headingBDFM {
+  background-color: #F66318;
+  color: white;
+}
+#headingG {
+  background-color: #68C52B;
+  color: white;
+}
+#headingJZ {
+  background-color: #925C25;
+  color: white;
+}
+#headingL {
+  background-color: #808183;
+  color: white;
+}
+#headingNQR {
+  background-color: #FED40A;
+  color: black;
+}
+#headingS {
+  background-color: #808183;
+  color: white;
+}
