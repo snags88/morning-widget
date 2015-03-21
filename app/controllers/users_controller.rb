@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
     def set_apis
       @mta = MTA.new
-      @weather = Wunderground.new(@user.zipcode)
+      @weathers = Wunderground.new(@user.zipcode)
       @news = NewYorkTimes.new
       @twitter = Twitter_helper.new(@user.token, @user.secret) if oauth?
       @tasks = @user.tasks

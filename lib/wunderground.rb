@@ -20,7 +20,7 @@ class Wunderground
   end
 
   def forecast_weather
-    self.weather_json[1..10].collect do |hourly_hash|
+    self.weather_json[1..12].collect do |hourly_hash|
       get_weather(hourly_hash)
     end
   end

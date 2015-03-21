@@ -34,16 +34,31 @@ div > button.close.by-text {
 #profile-image {
   overflow: hidden;
   border-radius: 50%;
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
   width: 60px;
   height: 60px;
   margin: 0 auto;
 }
 
+.vertical-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.widget-border {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 39px -5px rgba(0,0,0,0.5);
+  -moz-box-shadow: 5px 5px 39px -5px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 39px -5px rgba(0,0,0,0.5);
+}
+
+.row {
+  padding-bottom: 10px;
+}
 
 /* SUBWAY STYLING*/
 
@@ -86,4 +101,84 @@ div > button.close.by-text {
 #headingS {
   background-color: #808183;
   color: white;
+}
+
+/** WEATHER STYLING **/
+
+@font-face {
+  font-family: 'fontello';
+  src: url('fontello.eot?92190476');
+  src: url('fontello.eot?92190476#iefix') format('embedded-opentype'),
+       url('fontello.woff?92190476') format('woff'),
+       url('fontello.ttf?92190476') format('truetype'),
+       url('fontello.svg?92190476#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?92190476#fontello') format('svg');
+  }
+}
+*/
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+   font-size: 120%;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-twitter:before { content: '\e800'; }
+.icon-github-circled:before { content: '\e801'; }
+.icon-linkedin:before { content: '\e802'; }
+.icon-sun:before { content: '\e803'; } /* Clear hour between 6 and 18*/
+.icon-moon:before { content: '\e804'; } /* Clear hour not between 6 and 18*/
+.icon-cloud-sun:before { content: '\e805'; } /* Partly Cloudy Mostly Cloudy hour between 6 and 18 */
+.icon-cloud-moon:before { content: '\e806'; } /* Partly Cloudy Mostly Cloudy hour not between 6 and 18*/
+.icon-clouds:before { content: '\e807'; } /* Overcast */
+.icon-snow-heavy:before { content: '\e808'; } /* Snow Snow Showers */
+.icon-rain:before { content: '\e809'; } /* Rain Chance of Rain */
+.icon-flash-outline:before { content: '\e80a'; } /* Chance of Thunderstorm Thunderstorm */
+
+.weather {
+  text-align: center;
+  min-height: 110px;
+}
+
+.current-weather {
+  font-size: 40px;
+  padding: 10px 0;
+}
+
+.forecast_weather {
+  padding: 10px 0;
 }

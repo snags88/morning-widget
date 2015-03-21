@@ -1,0 +1,13 @@
+  <%- if weathers.weather_json -%>
+    <div class="row current-weather">
+      <%= render 'weathers/current_weather', :weather => weathers.current_weather.first, :current => true %>
+    </div>
+
+    <div class="row forecast_weather">
+      <%= render :partial => 'weathers/forecast_weather', :collection => weathers.forecast_weather, :as => :weather %>
+    </div>
+
+
+  <%- else -%>
+    <h2>Weather Forecast not available.</br>Please configure the zipcode in Settings.</h2>
+  <%- end -%>

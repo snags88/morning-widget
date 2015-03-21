@@ -8,7 +8,7 @@
       <div class="image-container">
         <a href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
         <%- if oauth? -%>
-          <img id="profile-image" src="<%= @twitter.my_image %>" alt="<%= @user.name %>" data-content="Hello World" data-placement="bottom">
+          <img id="profile-image" class="vertical-center" src="<%= @twitter.my_image %>" alt="<%= @user.name %>" data-content="Hello World" data-placement="bottom">
         <%- else -%>
           <%= image_tag 'default_profile.jpg', :id => "profile-image" %>
         <%- end -%>
@@ -45,9 +45,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row widget-border weather">
       <div class="col-md-12">
-        <%= render 'weathers/weather', :weather => @weather %>
+        <%= render 'weathers/weathers', :weathers => @weathers %>
       </div>
     </div>
   </div>
