@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Signed in!"
       redirect_to user_settings_path(@user)
     else
+      @identity = Identity.new
       flash.now[:danger] = "Invalid login. Please try again."
       render 'new'
     end
