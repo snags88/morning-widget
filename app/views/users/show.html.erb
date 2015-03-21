@@ -20,42 +20,49 @@
       </div>
     </div>
   </div>
-  <div class="subway-container">
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <%= render :partial => 'users/subway_status', :locals => {:user => @user, :mta => @mta }%>
+
+  <div class="left-panel col-md-2">
+    <%- if oauth? -%>
+      <ol>
+      <%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
+      </ol>
+    <%- end -%>
+  </div>
+
+  <div class="middle-panel col-md-8">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="subway-container">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <%= render :partial => 'subways/status', :locals => {:user => @user, :mta => @mta }%>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <ol>
+        <%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'weathers/weather', :weather => @weather %>
+      </div>
     </div>
   </div>
 
-  <%- if @weather.weather_json -%>
-    <%= @weather.current_weather %><br>
-  <%- else -%>
-    <p>Weather Forecast not available for this zipcode.</p>
-  <%- end -%>
+  <div class="right-panel col-md-2">
+    <%= form_for [@user, Task.new] do |f| %>
+        <%= f.label :name, 'Task' %>
+        <%= f.text_field :name %>
+      <%= f.submit :style => "display:none;"%>
+    <%- end -%>
+    <ul id="tasks">
+      <%= render @tasks %>
+    </ul>
+  </div>
 
-  <br>
-  <ol>
-  <%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
-  </ol>
-
-  <%- if oauth? -%>
-    <ol>
-    <%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
-    </ol>
-  <%- end -%>
-
-
-  <ul>
-  <%- @tasks.each do |task| -%>
-      <li><%= task.name %> | <%= link_to 'Delete', user_task_path(task.user, task), method: :delete %></li>
-  <%- end -%>
-  </ul>
-
-
-  <%= form_for [@user, Task.new] do |f| %>
-      <%= f.label :name, 'Task' %>
-      <%= f.text_field :name %>
-    <%= f.submit %>
-  <%- end -%>
 
 
 </div>
