@@ -1,0 +1,11 @@
+<div class="col-md-1">
+  <div class="time">
+    <%= hour_converter(weather["hour"].to_i) %>
+  </div>
+
+  <div class="temp-icon">
+    <%= weather["temp"] %>°
+
+    <i class="<%=get_icon(weather["condition"], weather["hour"].to_i) %>"></i>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 class Twitter_helper
 
+  attr_accessor :my_image
+
   def initialize(access, secret)
   @client = Twitter::REST::Client.new do |config|
     config.consumer_key = ENV['TWITTER_KEY']
@@ -7,6 +9,8 @@ class Twitter_helper
     config.access_token = access
     config.access_token_secret = secret
     end
+
+  self.my_image = @client.user.profile_image_url.site + @client.user.profile_image_url.path
   end
 
   def get_feed
@@ -17,12 +21,8 @@ class Twitter_helper
       "name" => tweet.user.name,
       "text" => tweet.text,
       "image_url" => tweet.user.profile_image_url.site +  tweet.user.profile_image_url.path,
-      "created_at" => tweet.created_at} #=> call time_in_words in ActionView
+      "created_at" => tweet.created_at}
     end
-  end
-
-  def my_image
-    @client.user.profile_image_url.site + @client.user.profile_image_url.path
   end
 
 end

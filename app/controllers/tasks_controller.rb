@@ -3,13 +3,13 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = params[:user_id]
     @task.save
-    redirect_to dashboard_path(@task.user)
+    render :layout => false
   end
 
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to dashboard_path(@task.user)
+    render :nothing => true
   end
 
   private

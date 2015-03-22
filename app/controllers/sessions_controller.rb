@@ -9,8 +9,13 @@ class SessionsController < ApplicationController
     if @user && @user.save
       login(@user)
       flash[:success] = "Signed in!"
-      redirect_to user_settings_path(@user)
+      if new_user?(@user)
+        redirect_to user_settings_path(@user)
+      else
+        redirect_to dashboard_path(@user)
+      end
     else
+      @identity = Identity.new
       flash.now[:danger] = "Invalid login. Please try again."
       render 'new'
     end
@@ -30,6 +35,10 @@ class SessionsController < ApplicationController
         identity = Identity.find_by(:email => params[:email])
         identity.user if identity && identity.authenticate(params[:password])
       end
+    end
+
+    def new_user?(user)
+      !(user.zipcode)
     end
 
 end

@@ -1,13 +1,15 @@
-<%= flash[:notice] %>
+<div class="dashboard-background-image"></div>
+
 <div class="container">
-  <div class="jumbotron">
-    <h1>Morning Widget</h1>
+  <div class="row">
+    <div class="jumbotron">
+      <h1>Morning Widget</h1>
 
-    <div class="centered">
-      <%= link_to('Sign in with Twitter', '/auth/twitter', class: 'btn btn-primary') %>
-      <button type ="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticate">Log In</button>
-    </div>
-
+      <div class="centered">
+        <%= link_to('Sign in with Twitter', '/auth/twitter', class: 'btn btn-primary') %>
+        <button type ="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticate">Log In</button>
+      </div>
+      
     <div class="modal fade" id="authenticate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

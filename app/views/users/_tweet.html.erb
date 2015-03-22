@@ -1,6 +1,13 @@
-<li>
-  <img src="<%= tweet['image_url'] %>" alt="<%= tweet["handle"] %>">
-  <p><strong>@<%= tweet["handle"] %></strong></p>
-  <p><%= tweet["text"] %></p>
-  <p><%= time_ago_in_words(tweet["created_at"]) %> ago</p>
-</li>
+<div class="tweet-item">
+  <div class="float-left tweet-image">
+    <img src="<%= tweet['image_url'] %>" alt="<%= tweet["handle"] %>">
+  </div>
+  <div class="float-left">
+    <p><strong>@<%= tweet["handle"] %></strong></br>
+    <%= time_ago_in_words(tweet["created_at"]) %> ago</p>
+  </div>
+  <div class="tweet-content">
+    <p><%= tweet["text"] %></p>
+  </div>
+  <div class="tweet-border"></div>
+</div>

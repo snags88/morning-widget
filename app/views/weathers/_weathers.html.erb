@@ -1,0 +1,20 @@
+  <%- if weathers.weather_json -%>
+
+    <div class="col-md-2">
+      <div class="current-weather">
+        <%= render 'weathers/current_weather', :weather => weathers.current_weather.first, :current => true %>
+      </div>
+    </div>
+
+    <div class="col-md-10">
+       <h2><%= weather_narrative(weathers.current_weather.first["condition"]) %></h2>
+
+      <div class="forecast_weather">
+      <%= render :partial => 'weathers/forecast_weather', :collection => weathers.forecast_weather, :as => :weather %>
+      </div>
+    </div>
+
+
+  <%- else -%>
+    <h2>Weather Forecast not available.</br>Please configure the zipcode in Settings.</h2>
+  <%- end -%>
