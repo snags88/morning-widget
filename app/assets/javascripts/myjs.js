@@ -2,6 +2,7 @@ $(function(){
   submitTask();
   deleteTask();
   fadeNotices();
+  failedLogin();
 });
 
 function deleteTask(){
@@ -48,5 +49,11 @@ function submitForm(form, callbackAction){
 function fadeNotices(){
    setTimeout(function() {
    $('#alert_close').trigger("click");
-},3000);
+    },3000);
+}
+
+function failedLogin(){
+  if (document.getElementById("error_explanation")){
+    $(".jumbotron button:first").trigger("click")
+  }
 }

@@ -12,12 +12,12 @@ class UsersController < ApplicationController
       login(@user)
       redirect_to dashboard_path(@user)
     else
-      #=> TODO add flash message
       render 'new'
     end
   end
 
   def show
+    set_img
   end
 
   def edit
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user #=> TODO add message to action
+      redirect_to @user
     else
-      render :edit #=> TODO add message to action
+      render :edit
     end
   end
 
@@ -58,6 +58,11 @@ class UsersController < ApplicationController
       @news = NewYorkTimes.new
       @twitter = Twitter_helper.new(@user.token, @user.secret) if oauth?
       @tasks = @user.ordered_tasks
+    end
+
+    def set_img
+      @user.image_url = @twitter.my_image if @twitter
+      @user.save
     end
 
 end
