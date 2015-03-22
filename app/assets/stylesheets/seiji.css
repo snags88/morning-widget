@@ -240,9 +240,14 @@ div > button.close.by-text {
 }
 
 .tweet-image {
-  padding-right: 5px;
+  padding-right: 10px;
 }
 
 .tweet-item {
   padding: 8px 5px;
+}
+
+.tweet-border {
+  margin: 0 auto;
+  border-bottom: 1px dotted gray;
 }

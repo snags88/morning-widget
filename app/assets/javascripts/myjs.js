@@ -16,11 +16,10 @@ function deleteExistingTask(e){
       context: this,
       success: function(result) {
         link.parent().remove();
-        link.href = this.href;
       }
   });
-
 }
+
 
 function submitTask(){
   $("#new_task").on('submit', createNewTask);
