@@ -4,7 +4,7 @@ module TweetHelper
     if oauth?
       render :partial => 'users/tweet', :collection => @twitter.get_feed
     else
-      "<h3 class='text-center'>Not connected to Twitter</h3>"
+      "<h3 class='text-center'>Not connected to Twitter</h3>".html_safe
     end
   end
 

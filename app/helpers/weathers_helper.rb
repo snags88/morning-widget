@@ -18,12 +18,12 @@ module WeathersHelper
   end
 
   def hour_converter(hour)
-    hour > 12 ? "#{hour - 12}pm" : "#{hour}am"
+    hour > 12 ? "#{hour - 12} pm" : "#{hour} am"
   end
 
   def weather_narrative(condition)
     if condition["Clear"]
-     "Hey it's lookin good outside!"
+     "Hey, it's lookin' good outside!"
     elsif condition["Cloudy"]
      "Gloomy day ahead, don't forget to smile!"
     elsif condition["Overcast"]

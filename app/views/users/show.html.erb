@@ -1,3 +1,5 @@
+<div class="dashboard-background-image">
+</div>
 <div class="container dashboard">
 
   <div class="row header">
@@ -21,9 +23,11 @@
     </div>
   </div>
 
-  <div class="row widget-border weather-container">
-    <div class="top-panel col-md-12">
-      <%= render 'weathers/weathers', :weathers => @weathers %>
+  <div class="row">
+    <div class="top-panel col-md-12 widget-border">
+      <div class="weather-container">
+        <%= render 'weathers/weathers', :weathers => @weathers %>
+      </div>
     </div>
   </div>
 

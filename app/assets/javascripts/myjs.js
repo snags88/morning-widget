@@ -1,6 +1,7 @@
 $(function(){
   submitTask();
   deleteTask();
+  fadeNotices();
 });
 
 function deleteTask(){
@@ -42,4 +43,10 @@ function submitForm(form, callbackAction){
   var action = form.attr("action");
   var params = form.serialize();
   $.post(action, params, callbackAction);
+}
+
+function fadeNotices(){
+   setTimeout(function() {
+   $('#alert_close').trigger("click");
+},3000);
 }
