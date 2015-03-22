@@ -1,4 +1,3 @@
-<div class="col-md-3">
   <div class="time">
     <%= hour_converter(weather["hour"].to_i) %>
   </div>
@@ -8,8 +7,3 @@
 
     <i class="<%=get_icon(weather["condition"], weather["hour"].to_i) %>"></i>
   </div>
-</div>
-
-<div class="col-md-9">
-   <h2><%= weather_narrative(weather["condition"]) %></h2>
-</div>

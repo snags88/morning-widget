@@ -1,12 +1,12 @@
-<div class="container top-dashboard">
+<div class="container dashboard">
 
-  <div class="row">
-    <div class="col-md-offset-1 col-md-10 text-center">
+  <div class="row header">
+    <div class="col-md-offset-2 col-md-8 text-center">
       <h1>Hello <%= @user.name %>, welcome to your dashboard</h1>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-offset-1 col-md-1">
       <div class="image-container">
-        <a href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+        <a href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" class="center">
         <%- if oauth? -%>
           <img id="profile-image" class="vertical-center" src="<%= @twitter.my_image %>" alt="<%= @user.name %>" data-content="Hello World" data-placement="bottom">
         <%- else -%>
@@ -21,48 +21,51 @@
     </div>
   </div>
 
-  <div class="left-panel col-md-2">
-    <%- if oauth? -%>
-      <ol>
-      <%= render :partial => 'users/tweet', :collection => @twitter.get_feed %>
-      </ol>
-    <%- end -%>
+  <div class="row widget-border weather-container">
+    <div class="top-panel col-md-12">
+      <%= render 'weathers/weathers', :weathers => @weathers %>
+    </div>
   </div>
 
-  <div class="middle-panel col-md-8">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="subway-container">
+  <div class="row">
+    <div class="left-panel col-md-4">
+      <div class="task-container widget-border">
+        <p class="text-center widget-header"><strong>Task List</strong></p>
+        <div class="task-form">
+          <%= render 'tasks/form', :user => @user %>
+        </div>
+        <div id="tasks">
+          <%= render @tasks %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mid-panel col-md-4">
+      <div class="news-container widget-border">
+        <p class="text-center widget-header"><strong>New York Times</strong></p>
+        <ol>
+        <%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
+        </ol>
+      </div>
+
+      <div class="top-padding">
+        <div class="subway-container widget-border">
+          <p class="text-center widget-header"><strong>Subway Status</strong></p>
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <%= render :partial => 'subways/status', :locals => {:user => @user, :mta => @mta }%>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <ol>
-        <%= render :partial => 'users/news', :collection => @news.top_5_news_stories %>
-        </ol>
+    </div>
+
+    <div class="left-panel col-md-4">
+      <div class="twitter-container widget-border">
+        <p class="text-center widget-header"><strong>Twitter Feed</strong></p>
+        <%= generate_twitter_container %>
       </div>
     </div>
 
-    <div class="row widget-border weather">
-      <div class="col-md-12">
-        <%= render 'weathers/weathers', :weathers => @weathers %>
-      </div>
-    </div>
   </div>
-
-  <div class="right-panel col-md-2">
-    <%= form_for [@user, Task.new] do |f| %>
-        <%= f.label :name, 'Task' %>
-        <%= f.text_field :name %>
-      <%= f.submit :style => "display:none;"%>
-    <%- end -%>
-    <ul id="tasks">
-      <%= render @tasks %>
-    </ul>
-  </div>
-
-
 
 </div>

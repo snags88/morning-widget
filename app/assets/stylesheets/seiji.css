@@ -9,6 +9,10 @@
   float: right;
 }
 
+.float-left{
+  float: left;
+}
+
 .bottom-align {
   position: relative;
   top: 14px;
@@ -18,8 +22,9 @@
   margin-top: 57px;
 }
 
-.top-dashboard {
-  margin-top: 25px;
+.dashboard {
+  padding-top: 25px;
+  padding-bottom: 50px;
 }
 
 div > button.close.by-text {
@@ -56,11 +61,24 @@ div > button.close.by-text {
   box-shadow: 5px 5px 39px -5px rgba(0,0,0,0.5);
 }
 
-.row {
-  padding-bottom: 10px;
+.dashboard .row {
+  padding: 20px 0 20px 0;
+}
+
+.widget-header {
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.top-padding {
+  padding-top: 20px;
 }
 
 /* SUBWAY STYLING*/
+
+.subway-container {
+  padding: 10px 8px;
+}
 
 #heading456 {
   background-color: #00933C;
@@ -169,9 +187,10 @@ div > button.close.by-text {
 .icon-rain:before { content: '\e809'; } /* Rain Chance of Rain */
 .icon-flash-outline:before { content: '\e80a'; } /* Chance of Thunderstorm Thunderstorm */
 
-.weather {
+.weather-container {
   text-align: center;
   min-height: 110px;
+  padding: 10px 0;
 }
 
 .current-weather {
@@ -181,4 +200,49 @@ div > button.close.by-text {
 
 .forecast_weather {
   padding: 10px 0;
+}
+
+
+/** ARTICLES FORMAT **/
+.news-container {
+  padding: 10px;
+}
+
+/** TASK LIST FORMAT **/
+.task-container {
+  padding: 10px;
+}
+
+.task-form{
+  padding: 0 10px;
+}
+
+#task_name {
+  width: 100%;
+  padding: 0 10px;
+}
+
+#tasks {
+  padding: 15px 10px 5px 10px;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+/** TWITTER FORMAT **/
+.twitter-container {
+  padding: 10px;
+}
+
+.tweet-content{
+  clear:both;
+}
+
+.tweet-image {
+  padding-right: 5px;
+}
+
+.tweet-item {
+  padding: 8px 5px;
 }

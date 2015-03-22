@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
     Subway.where(:id => filter).order(:id).pluck(:name)
   end
 
+  def ordered_tasks
+    filter = self.tasks.pluck(:id)
+    Task.where(:id => filter).order(:created_at => "DESC")
+  end
+
   def self.set_user(auth)
     User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
   end

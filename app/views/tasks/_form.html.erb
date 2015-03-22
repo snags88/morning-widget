@@ -1,0 +1,4 @@
+<%= form_for [user, Task.new] do |f| %>
+    <%= f.text_field :name, :autocomplete => "off", :placeholder => "new task..." %>
+  <%= f.submit :style => "display:none;"%>
+<%- end -%>

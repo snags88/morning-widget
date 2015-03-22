@@ -34,7 +34,9 @@ class MTA
   def text_parser(text)
     status_collection = Nokogiri::HTML(text)
     status_array = status_collection.search("p").collect{|status| status.text.strip}
+    status_array += status_collection.search(".plannedWorkDetail").collect{|status| status.text.strip}
     status_array.delete("Allow additional travel time.")
+    status_array.delete("")
     status_array
   end
 
