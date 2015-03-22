@@ -1,15 +1,16 @@
-<h3>Sign In</h3>
-
-<div class="signin">
-  <%= form_tag '/signin', class: "form-horizontal" do %>
-      <div class='field'>
-        <%= label_tag :email %><br>
-        <%= email_field_tag :email %>
-      </div>
-      <div class='field'>
-        <%= label_tag :password %><br>
-        <%= password_field_tag :password %>
-      </div>
-      <div class='actions'><%= submit_tag 'Login' %></div>
-  <% end %>
+<div class="signin col-md-6">
+  <h3>Sign In</h3>
+    <%= form_tag '/signin', class: "form-horizontal" do %>
+        <div class='form-group'>
+          <%= label_tag :email %><br>
+          <%= email_field_tag :email %>
+        </div>
+        <div class='form-group'>
+          <%= label_tag :password %><br>
+          <%= password_field_tag :password %>
+        </div>
+        <div class='form-group'><%= submit_tag 'Login' %></div>
+    <% end %>
 </div>
+
+

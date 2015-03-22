@@ -17,5 +17,14 @@ a.btn.btn-primary:hover{
 }
 
 .signin{
-  float: right;
+  padding-left: 10%;
 }
+
+.new_account{
+  padding-left: 15%;
+}
+
+.actions{
+  padding: 10px 0 15px 0;
+}
+
