@@ -9,7 +9,7 @@ a.btn.btn-primary:hover{
 }
 
 .jumbotron {
-  margin: 20%;
+  margin: 17%;
 }
 
 .centered{
@@ -28,3 +28,6 @@ a.btn.btn-primary:hover{
   padding: 10px 0 15px 0;
 }
 
+.container.front-page{
+  max-height: 100vh;
+}

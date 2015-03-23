@@ -10,34 +10,28 @@ function deleteTask(){
 }
 
 function deleteExistingTask(e){
-  var link = $(this);
-  stopAction(e);
+  e.preventDefault();
   $.ajax({
-      url: link.attr("href"),
+      url: $(this).attr("href"),
       method: 'DELETE',
       context: this,
       success: function(result) {
-        link.parent().remove();
+        $(this).parent().remove();
       }
   });
 }
-
 
 function submitTask(){
   $("#new_task").on('submit', createNewTask);
 }
 
 function createNewTask(e){
-  stopAction(e);
+  e.preventDefault();
   submitForm($(this), function(savedTask){
     $("#task_name").val("");
     $("#tasks").prepend($(savedTask));
     deleteTask();
   });
-}
-
-function stopAction(e){
-  e.preventDefault();
 }
 
 function submitForm(form, callbackAction){
