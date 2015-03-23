@@ -1,0 +1,2 @@
+class TwitterErrorHandler < StandardError
+end

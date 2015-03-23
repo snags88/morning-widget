@@ -21,11 +21,11 @@ module WeathersHelper
     hour > 12 ? "#{hour - 12} pm" : "#{hour} am"
   end
 
-  def weather_narrative(condition)
+  def weather_narrative(condition, hour)
     if condition["Clear"]
-     "Hey, it's lookin' good outside!"
+     hour > 5 && hour < 18 ? "Hey, it's lookin' good outside!" : "Good night! Remember to brush your teeth."
     elsif condition["Cloudy"]
-     "Gloomy day ahead, don't forget to smile!"
+     hour > 5 && hour < 18 ? "Gloomy day ahead, don't forget to smile!" : "Good night! Don't stay up too late."
     elsif condition["Overcast"]
       "Don't be fooled, it's going to be overcast. Leave those shades at home!"
     elsif condition["Snow"]

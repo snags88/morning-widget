@@ -10,7 +10,11 @@ class Twitter_helper
     config.access_token_secret = secret
     end
 
-  self.my_image = @client.user.profile_image_url.site + @client.user.profile_image_url.path
+    begin
+      self.my_image = @client.user.profile_image_url.site + @client.user.profile_image_url.path
+    rescue Twitter::Error
+      raise TwitterErrorHandler.new("Rate Limit Reached")
+    end
   end
 
   def get_feed

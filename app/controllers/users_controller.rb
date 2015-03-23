@@ -56,8 +56,18 @@ class UsersController < ApplicationController
       @mta = MTA.new
       @weathers = Wunderground.new(@user.zipcode)
       @news = NewYorkTimes.new
-      @twitter = Twitter_helper.new(@user.token, @user.secret) if oauth?
       @tasks = @user.ordered_tasks
+
+      begin
+        @twitter_feed = Twitter_helper.new(@user.token, @user.secret).get_feed if oauth?
+      rescue TwitterErrorHandler
+        @twitter_feed = [{ "handle" => "failWhale",
+                          "name" => "Twitter Fail Whale",
+                          "text" => "Too many requests! Try again in a few minutes.",
+                          "image_url" => "https://pbs.twimg.com/profile_images/1193268828/failwhale.jpg",
+                          "created_at" => Time.now
+                        }]
+      end
     end
 
     def set_img
