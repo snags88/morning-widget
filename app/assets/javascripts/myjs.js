@@ -6,7 +6,7 @@ $(function(){
 });
 
 function addDeleteTaskListener(){
-  $(".task_delete").on('click', deleteExistingTask);
+  $("#tasks").on('click', ".task_delete", deleteExistingTask);
 }
 
 function deleteExistingTask(e){
@@ -16,7 +16,9 @@ function deleteExistingTask(e){
       method: 'DELETE',
       context: this,
       success: function(result) {
-        $(this).parent().remove();
+        $(this).parent().slideUp(400, function(){
+          $(this).remove()
+        });
       }
   });
 }
@@ -29,8 +31,7 @@ function createNewTask(e){
   e.preventDefault();
   submitForm($(this), function(savedTask){
     $("#task_name").val("");
-    $("#tasks").prepend($(savedTask));
-    addDeleteTaskListener();
+    $(savedTask).prependTo($("#tasks")).hide().slideDown(400);
   });
 }
 

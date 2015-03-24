@@ -57,21 +57,21 @@ class UsersController < ApplicationController
       @news = NewYorkTimes.new
       @tasks = @user.ordered_tasks
 
-
-        if oauth?
-          @twitter = Twitter_helper.new(@user.token, @user.secret)
-          begin
-          @twitter_feed = @twitter.get_feed
-          set_img
-          rescue TwitterErrorHandler
-          @twitter_feed = [{ "handle" => "failWhale",
+      begin
+          if oauth?
+            @twitter = Twitter_helper.new(@user.token, @user.secret)
+            @twitter_feed = @twitter.get_feed
+            set_img
+          end
+      rescue TwitterErrorHandler
+        @twitter_feed = [{ "handle" => "failWhale",
                               "name" => "Twitter Fail Whale",
                               "text" => "Too many requests! Try again in a few minutes.",
                               "image_url" => "https://pbs.twimg.com/profile_images/1193268828/failwhale.jpg",
                               "created_at" => Time.now
                             }]
-          end
-        end
+
+      end
     end
 
     def set_img
