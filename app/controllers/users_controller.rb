@@ -17,7 +17,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    set_img
   end
 
   def edit
@@ -25,7 +24,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to dashboard_path(@user)
     else
       render :edit
     end
@@ -58,20 +57,25 @@ class UsersController < ApplicationController
       @news = NewYorkTimes.new
       @tasks = @user.ordered_tasks
 
-      begin
-        @twitter_feed = Twitter_helper.new(@user.token, @user.secret).get_feed if oauth?
-      rescue TwitterErrorHandler
-        @twitter_feed = [{ "handle" => "failWhale",
-                          "name" => "Twitter Fail Whale",
-                          "text" => "Too many requests! Try again in a few minutes.",
-                          "image_url" => "https://pbs.twimg.com/profile_images/1193268828/failwhale.jpg",
-                          "created_at" => Time.now
-                        }]
-      end
+
+        if oauth?
+          @twitter = Twitter_helper.new(@user.token, @user.secret)
+          begin
+          @twitter_feed = @twitter.get_feed
+          set_img
+          rescue TwitterErrorHandler
+          @twitter_feed = [{ "handle" => "failWhale",
+                              "name" => "Twitter Fail Whale",
+                              "text" => "Too many requests! Try again in a few minutes.",
+                              "image_url" => "https://pbs.twimg.com/profile_images/1193268828/failwhale.jpg",
+                              "created_at" => Time.now
+                            }]
+          end
+        end
     end
 
     def set_img
-      @user.image_url = @twitter.my_image if @twitter
+      @user.image_url = @twitter.my_image
       @user.save
     end
 
