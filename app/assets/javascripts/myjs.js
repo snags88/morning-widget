@@ -1,11 +1,11 @@
 $(function(){
-  submitTask();
-  deleteTask();
+  addNewTaskListener();
+  addDeleteTaskListener();
   fadeNotices();
   failedLogin();
 });
 
-function deleteTask(){
+function addDeleteTaskListener(){
   $(".task_delete").on('click', deleteExistingTask);
 }
 
@@ -21,7 +21,7 @@ function deleteExistingTask(e){
   });
 }
 
-function submitTask(){
+function addNewTaskListener(){
   $("#new_task").on('submit', createNewTask);
 }
 
@@ -30,7 +30,7 @@ function createNewTask(e){
   submitForm($(this), function(savedTask){
     $("#task_name").val("");
     $("#tasks").prepend($(savedTask));
-    deleteTask();
+    addDeleteTaskListener();
   });
 }
 
