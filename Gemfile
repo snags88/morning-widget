@@ -51,12 +51,13 @@ group :development, :test do
   gem 'spring'
   gem 'pry'
 
-  # Testing gem
+  # Testing gems
   gem "factory_girl_rails", "~> 4.0"
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'database_cleaner'
+  gem 'faker'
   # run rspec tests on master branch
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
     gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
