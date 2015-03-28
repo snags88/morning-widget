@@ -5,4 +5,8 @@ FactoryGirl.define do
     password {Faker::Internet.password}
     password_confirmation {|u| u.password}
   end
+
+  factory :invalid_identity, :parent => :identity do
+    email nil
+  end
 end

@@ -25,4 +25,8 @@ FactoryGirl.define do
     end
   end
 
+  factory :invalid_user, :parent => :user do
+    zipcode 1111
+  end
+
 end
