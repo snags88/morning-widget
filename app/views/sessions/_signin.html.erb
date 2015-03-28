@@ -1,16 +1,14 @@
-<div class="signin col-md-6">
-  <h3>Sign In</h3>
-    <%= form_tag '/signin', class: "form-horizontal" do %>
-        <div class='form-group'>
-          <%= label_tag :email %><br>
-          <%= email_field_tag :email %>
-        </div>
-        <div class='form-group'>
-          <%= label_tag :password %><br>
-          <%= password_field_tag :password %>
-        </div>
-        <div class='form-group'><%= submit_tag 'Login' %></div>
-    <% end %>
-</div>
-
+<%= form_tag '/signin' do %>
+<legend class="login-legend"><h3>Sign In</h3></legend>
+<p>Returning users log in here!</p></br>
+    <div class='form-group'>
+      <%= label_tag :email %><br>
+      <%= email_field_tag :email %>
+    </div>
+    <div class='form-group'>
+      <%= label_tag :password %><br>
+      <%= password_field_tag :password %>
+    </div>
+    <div class='form-group'><%= submit_tag 'Login' %></div>
+<% end %>
 
