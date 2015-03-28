@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
-  has_many :user_subways
+  has_many :user_subways, dependent: :destroy
   has_many :subways, through: :user_subways
 
   has_many :identities, dependent: :destroy
