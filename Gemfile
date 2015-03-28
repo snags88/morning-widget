@@ -37,7 +37,6 @@ gem 'omniauth-twitter'
 
 gem 'nokogiri'
 gem 'json'
-
 gem 'twitter'
 
 group :development, :test do
@@ -54,6 +53,15 @@ group :development, :test do
 
   # Testing gem
   gem "factory_girl_rails", "~> 4.0"
-  gem "rspec"
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'database_cleaner'
+  # run rspec tests on master branch
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
+
 end
+
 
